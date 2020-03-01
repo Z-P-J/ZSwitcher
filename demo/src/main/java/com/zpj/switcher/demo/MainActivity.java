@@ -30,9 +30,12 @@ public class MainActivity extends AppCompatActivity {
         CommonSwitcher switcherX = findViewById(R.id.switcher_x);
         final CircleSwitcher switcherC = findViewById(R.id.switcher_c);
 
-        switcherX.setOnCheckedChangeListener(checked -> {
-            switcherC.setChecked(checked);
-            tvSwitcherX.setTextColor(checked ? defaultColor : disabledColor);
+        switcherX.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+            @Override
+            public void onChange(boolean checked) {
+                switcherC.setChecked(checked);
+                tvSwitcherX.setTextColor(checked ? defaultColor : disabledColor);
+            }
         });
 
         switcherC.setOnCheckedChangeListener(checked -> tvSwitcherC.setTextColor(checked ? defaultColor : disabledColor));

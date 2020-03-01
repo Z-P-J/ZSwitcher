@@ -58,12 +58,6 @@ public class ScreenUtils {
         return metrics;
     }
 
-    /**
-     * 获取屏幕大小
-     *
-     * @param context
-     * @return
-     */
     public static int[] getScreenPixelSize(Context context) {
         DisplayMetrics metrics = getDisplayMetrics(context);
         return new int[]{metrics.widthPixels, metrics.heightPixels};
@@ -86,9 +80,6 @@ public class ScreenUtils {
         return 0;
     }
 
-    /**
-     * 获取底部导航栏 (Navigation Bar) 高度
-     */
     public static int getNavigationBarHeight(Context context) {
         Resources resources = context.getResources();
         int resourceId = context.getResources().getIdentifier("navigation_bar_height", "dimen", "android");

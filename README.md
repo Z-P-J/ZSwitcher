@@ -19,7 +19,7 @@ Just add Switcher view in your layout XML and Switcher library in your project v
 
 ```gradle
 dependencies {
-  implementation 'com.bitvale:switcher:1.0.5'
+  implementation 'com.zpj.widget.switcher:ZSwitcher:1.0.0'
 }
 ```
 
@@ -47,13 +47,16 @@ You must use the following properties in your XML to change your Switcher.
 * `app:switcher_icon_color`         (color)     -> default  white
 * `app:elevation`                   (dimension) -> default  4dp
 
-Kotlin
+Java
 -----
 
-```kotlin
-switcher.setOnCheckedChangeListener { checked ->
-    if (checked) action()
-}
+```java
+switcher.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+    @Override
+    public void onChange(boolean checked) {
+        // do something
+    }
+});
 ```
 
 LICENCE
