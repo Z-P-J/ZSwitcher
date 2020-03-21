@@ -19,7 +19,7 @@ Just add Switcher view in your layout XML and Switcher library in your project v
 
 ```gradle
 dependencies {
-  implementation 'com.zpj.widget.switcher:ZSwitcher:1.0.4'
+  implementation 'com.zpj.widget:ZSwitcher:1.0.4'
 }
 ```
 
@@ -27,13 +27,16 @@ XML
 -----
 
 ```xml
-<com.bitvale.switcher.SwitcherX // or SwitcherC
-    android:id="@+id/switcher"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    app:switcher_on_color="@color/on_color"
-    app:switcher_off_color="@color/off_color"
-    app:switcher_icon_color="@color/icon_color" />
+<com.zpj.widget.switcher.CommonSwitcher
+        android:id="@+id/switcher_x"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+<com.zpj.widget.switcher.CircleSwitcher
+        android:id="@+id/switcher_c"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
 ```
 
 You must use the following properties in your XML to change your Switcher.
