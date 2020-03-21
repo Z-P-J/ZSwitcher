@@ -1,8 +1,8 @@
-package com.zpj.widget;
+package com.zpj.widget.switcher;
 
 import android.animation.Animator;
 
-public class SimpleAnimatorListener implements Animator.AnimatorListener {
+class SimpleAnimatorListener implements Animator.AnimatorListener {
 
     @Override
     public void onAnimationStart(Animator animation) {

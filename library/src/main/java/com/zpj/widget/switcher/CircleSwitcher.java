@@ -32,11 +32,11 @@ public class CircleSwitcher extends BaseSwitcher {
         if (this.iconProgress != iconProgress) {
             this.iconProgress = iconProgress;
 
-            float iconOffset = Utils.lerp(0f, iconRadius - iconCollapsedWidth / 2, iconProgress);
+            float iconOffset = Utils.lerp(0f, iconRadius - iconCollapsedWidth / 2, 1f - iconProgress);
             iconRect.left = (switcherRadius - iconCollapsedWidth / 2 - iconOffset) + shadowOffset;
             iconRect.right = (switcherRadius + iconCollapsedWidth / 2 + iconOffset) + shadowOffset;
 
-            float clipOffset = Utils.lerp(0f, iconClipRadius, iconProgress);
+            float clipOffset = Utils.lerp(0f, iconClipRadius, 1f - iconProgress);
             iconClipRect.set(
                     iconRect.centerX() - clipOffset,
                     iconRect.centerY() - clipOffset,
@@ -64,17 +64,19 @@ public class CircleSwitcher extends BaseSwitcher {
                 (switcherRadius * 2f - (switcherRadius * 2f - iconHeight) / 2f) + shadowOffset / 2
         );
 
-        if (!isChecked) {
-            iconRect.left = (switcherRadius - iconCollapsedWidth / 2f - (iconRadius - iconCollapsedWidth / 2f)) + shadowOffset;
-            iconRect.right = (switcherRadius + iconCollapsedWidth / 2f + (iconRadius - iconCollapsedWidth / 2f)) + shadowOffset;
-
-            iconClipRect.set(
-                    iconRect.centerX() - iconClipRadius,
-                    iconRect.centerY() - iconClipRadius,
-                    iconRect.centerX() + iconClipRadius,
-                    iconRect.centerY() + iconClipRadius
-            );
-        }
+//        if (!isChecked) {
+////            iconRect.left = (switcherRadius - iconCollapsedWidth / 2f - (iconRadius - iconCollapsedWidth / 2f)) + shadowOffset;
+////            iconRect.right = (switcherRadius + iconCollapsedWidth / 2f + (iconRadius - iconCollapsedWidth / 2f)) + shadowOffset;
+//            iconRect.left = getWidth() - switcherRadius - iconCollapsedWidth / 2;
+//            iconRect.right = getWidth() - switcherRadius + iconCollapsedWidth / 2;
+//
+//            iconClipRect.set(
+//                    iconRect.centerX() - iconClipRadius,
+//                    iconRect.centerY() - iconClipRadius,
+//                    iconRect.centerX() + iconClipRadius,
+//                    iconRect.centerY() + iconClipRadius
+//            );
+//        }
     }
 
     @Override

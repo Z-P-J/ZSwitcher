@@ -4,18 +4,11 @@ import android.animation.Animator;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Outline;
 import android.graphics.Paint;
 import android.graphics.RectF;
-import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.annotation.RequiresApi;
 import android.util.AttributeSet;
-import android.util.Log;
-import android.view.View;
-
-import com.zpj.widget.SimpleAnimatorListener;
 
 import java.util.Set;
 
@@ -62,16 +55,18 @@ public class CommonSwitcher extends BaseSwitcher {
         );
 
         if (!isChecked) {
-            iconRect.left = getWidth() - switcherRadius - iconCollapsedWidth / 2 - (iconRadius - iconCollapsedWidth / 2);
-            iconRect.right = getWidth() - switcherRadius + iconCollapsedWidth / 2 + (iconRadius - iconCollapsedWidth / 2);
+//            iconRect.left = getWidth() - switcherRadius - iconCollapsedWidth / 2 - (iconRadius - iconCollapsedWidth / 2);
+//            iconRect.right = getWidth() - switcherRadius + iconCollapsedWidth / 2 + (iconRadius - iconCollapsedWidth / 2);
+            iconRect.left = getWidth() - switcherRadius - iconCollapsedWidth / 2;
+            iconRect.right = getWidth() - switcherRadius + iconCollapsedWidth / 2;
 
             iconClipRect.set(
-                    iconRect.centerX() - iconClipRadius,
+                    getWidth() - iconRect.centerX() - iconClipRadius,
                     iconRect.centerY() - iconClipRadius,
-                    iconRect.centerX() + iconClipRadius,
+                    getWidth() - iconRect.centerX() + iconClipRadius,
                     iconRect.centerY() + iconClipRadius
             );
-
+//            iconTranslateX = shadowOffset + switcherRadius * 2;
             iconTranslateX = -(getWidth() - shadowOffset - switcherRadius * 2);
         }
     }
@@ -81,11 +76,15 @@ public class CommonSwitcher extends BaseSwitcher {
         if (this.iconProgress != iconProgress) {
             this.iconProgress = iconProgress;
 
-            float iconOffset = Utils.lerp(0f, iconRadius - iconCollapsedWidth / 2, iconProgress);
+//            float iconOffset = Utils.lerp(0f, iconRadius - iconCollapsedWidth / 2, iconProgress);
+//            iconRect.left = getWidth() - switcherRadius - iconCollapsedWidth / 2 - iconOffset;
+//            iconRect.right = getWidth() - switcherRadius + iconCollapsedWidth / 2 + iconOffset;
+
+            float iconOffset = Utils.lerp(0f, iconRadius - iconCollapsedWidth / 2, 1 - iconProgress);
             iconRect.left = getWidth() - switcherRadius - iconCollapsedWidth / 2 - iconOffset;
             iconRect.right = getWidth() - switcherRadius + iconCollapsedWidth / 2 + iconOffset;
 
-            float clipOffset = Utils.lerp(0f, iconClipRadius, iconProgress);
+            float clipOffset = Utils.lerp(0f, iconClipRadius, 1 - iconProgress);
             iconClipRect.set(
                     iconRect.centerX() - clipOffset,
                     iconRect.centerY() - clipOffset,

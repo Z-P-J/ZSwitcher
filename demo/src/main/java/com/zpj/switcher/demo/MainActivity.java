@@ -1,6 +1,7 @@
 package com.zpj.switcher.demo;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -28,6 +29,8 @@ public class MainActivity extends AppCompatActivity {
         final TextView tvSwitcherX = findViewById(R.id.tv_switcher_x);
         final TextView tvSwitcherC = findViewById(R.id.tv_switcher_c);
         CommonSwitcher switcherX = findViewById(R.id.switcher_x);
+        switcherX.setOnColor(Color.BLACK);
+        switcherX.setOffColor(Color.LTGRAY);
         final CircleSwitcher switcherC = findViewById(R.id.switcher_c);
 
         switcherX.setOnCheckedChangeListener(new OnCheckedChangeListener() {

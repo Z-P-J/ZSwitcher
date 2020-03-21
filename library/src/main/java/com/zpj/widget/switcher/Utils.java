@@ -1,5 +1,6 @@
 package com.zpj.widget.switcher;
 
+import android.content.Context;
 import android.os.Build;
 
 class Utils {
@@ -26,6 +27,13 @@ class Utils {
 
     static float lerp(float a, float b, float t) {
         return a + (b - a) * t;
+    }
+
+    public static float dp2px(Context context, float dp) {
+        if (context == null) {
+            return -1;
+        }
+        return dp * context.getResources().getDisplayMetrics().density;
     }
 
 }

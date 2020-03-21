@@ -28,10 +28,6 @@ import android.support.annotation.RequiresApi;
 import android.util.AttributeSet;
 import android.view.View;
 
-import com.zpj.utils.ScreenUtils;
-import com.zpj.widget.R;
-import com.zpj.widget.SimpleAnimatorListener;
-
 import java.util.HashSet;
 import java.util.Set;
 
@@ -43,7 +39,9 @@ public abstract class BaseSwitcher extends View {
     protected float iconCollapsedWidth = 0f;
     protected int defHeight = 0;
     protected int defWidth = 0;
-    boolean isChecked = true;
+    boolean isChecked = false;
+
+    private static final int DISABLE_COLOR = Color.parseColor("#eeeeee");
 
     @ColorInt
     protected int onColor = 0;
@@ -118,6 +116,13 @@ public abstract class BaseSwitcher extends View {
         setMeasuredDimension(width, height);
     }
 
+    @Override
+    public void setEnabled(boolean enabled) {
+        super.setEnabled(enabled);
+        setCurrentColor(enabled ? (isChecked ? onColor :offColor) : DISABLE_COLOR);
+        postInvalidate();
+    }
+
     protected void initAttributes(Context context, AttributeSet attrs, int defStyleAttr) {
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.BaseSwitcher,
                 defStyleAttr, R.style.Switcher);
@@ -128,13 +133,11 @@ public abstract class BaseSwitcher extends View {
         offColor = typedArray.getColor(R.styleable.BaseSwitcher_switcher_off_color, 0);
         iconColor = typedArray.getColor(R.styleable.BaseSwitcher_switcher_icon_color, 0);
 
-        isChecked = typedArray.getBoolean(R.styleable.BaseSwitcher_android_checked, true);
+        isChecked = typedArray.getBoolean(R.styleable.BaseSwitcher_android_checked, false);
 
-        if (!isChecked) {
-            setIconProgress(1f);
-        }
+        setIconProgress(isChecked ? 0f : 1f);
 
-        setCurrentColor(isChecked ? onColor :offColor);
+        setCurrentColor(isEnabled() ? (isChecked ? onColor :offColor) : DISABLE_COLOR);
 
         iconPaint.setColor(iconColor);
 
@@ -174,7 +177,7 @@ public abstract class BaseSwitcher extends View {
         });
         animatorSet.add(iconAnimator);
 
-        int toColor =  isChecked ? offColor : onColor;
+        int toColor =  isEnabled() ? (isChecked ? offColor : onColor) : DISABLE_COLOR;
 
         iconClipPaint.setColor(toColor);
 
@@ -242,16 +245,16 @@ public abstract class BaseSwitcher extends View {
      * @param withAnimation use animation
      */
     public void setChecked(boolean checked, boolean withAnimation) {
-        if (this.isChecked != checked) {
+        if (isEnabled() && this.isChecked != checked) {
             if (withAnimation) {
                 animateSwitch();
             } else {
                 this.isChecked = checked;
                 if (!checked) {
-                    setCurrentColor(offColor);
+                    setCurrentColor(isEnabled() ? offColor : DISABLE_COLOR);
                     setIconProgress(1f);
                 } else {
-                    setCurrentColor(onColor);
+                    setCurrentColor(isEnabled() ? onColor : DISABLE_COLOR);
                     setIconProgress(0f);
                 }
             }
@@ -288,7 +291,7 @@ public abstract class BaseSwitcher extends View {
     }
 
     private void setShadowBlurRadius(float elevation) {
-        float maxElevation = ScreenUtils.dp2px(getContext(), 24f);
+        float maxElevation = Utils.dp2px(getContext(), 24f);
         switchElevation = Math.min(25f * (elevation / maxElevation), 25f);
     }
 
@@ -327,6 +330,24 @@ public abstract class BaseSwitcher extends View {
         } finally {
             canvas.restoreToCount(checkpoint);
         }
+    }
+
+    public void setOnColor(int onColor) {
+        this.onColor = onColor;
+        setCurrentColor(isEnabled() ? (isChecked ? onColor :offColor) : DISABLE_COLOR);
+        postInvalidate();
+    }
+
+    public void setOffColor(int offColor) {
+        this.offColor = offColor;
+        setCurrentColor(isEnabled() ? (isChecked ? onColor :offColor) : DISABLE_COLOR);
+        postInvalidate();
+    }
+
+    public void setIconColor(int iconColor) {
+        this.iconColor = iconColor;
+        iconPaint.setColor(iconColor);
+        postInvalidate();
     }
 
     protected SwitchOutline getSwitchOutline(int w, int h) {

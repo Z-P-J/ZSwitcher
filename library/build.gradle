@@ -1,6 +1,4 @@
 apply plugin: 'com.android.library'
-//apply plugin: 'com.github.dcendents.android-maven'
-//apply plugin: 'com.jfrog.bintray'
 apply plugin: 'com.novoda.bintray-release'
 
 android {
@@ -10,14 +8,14 @@ android {
         minSdkVersion 19
         targetSdkVersion 28
         versionCode 1
-        versionName "1.0.0"
+        versionName "1.0.4"
     }
 
     publish {
         artifactId = 'ZSwitcher'
         userOrg = 'z-p-j'
-        groupId = 'com.zpj.widget.switcher'
-        publishVersion = '1.0.0'
+        groupId = 'com.zpj.widget'
+        publishVersion = '1.0.4'
         desc = 'Android implementation of switch animation from Oleg Frolov.'
         website = 'https://github.com/Z-P-J/ZSwitcher'
         licences = ['Apache-2.0']
@@ -27,71 +25,3 @@ android {
 dependencies {
     implementation 'com.android.support:appcompat-v7:28.0.0'
 }
-
-//version = "1.0.0"
-//
-//def siteUrl = 'https://github.com/Z-P-J/ZSwitcher'
-//def gitUrl = 'git@github.com:Z-P-J/ZSwitcher.git'
-//group = "com.zpj.widget.switcher"
-//install {
-//    repositories.mavenInstaller {
-//        pom {
-//            project {
-//                packaging 'aar'
-//                name 'Android implementation of switch animation from Oleg Frolov.'
-//                url siteUrl
-//                licenses {
-//                    license {
-//                        name 'The Apache Software License, Version 2.0'
-//                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-//                    }
-//                }
-//                developers {
-//                    developer {
-//                        id 'Z-P-J'
-//                        name 'Zpj'
-//                        email '2571490256@qq.com'
-//                    }
-//                }
-//                scm {
-//                    connection gitUrl
-//                    developerConnection gitUrl
-//                    url siteUrl
-//                }
-//            }
-//        }
-//    }
-//}
-//task sourcesJar(type: Jar) {
-//    from android.sourceSets.main.java.srcDirs
-//    classifier = 'sources'
-//}
-//task javadoc(type: Javadoc) {
-//    source = android.sourceSets.main.java.srcDirs
-//    options.linkSource true
-//    classpath += project.files(project.android.getBootClasspath().join(File.pathSeparator))
-//    failOnError false
-//}
-//task javadocJar(type: Jar, dependsOn: javadoc) {
-//    classifier = 'javadoc'
-//    from javadoc.destinationDir
-//}
-//artifacts {
-//    archives javadocJar
-//    archives sourcesJar
-//}
-//Properties properties = new Properties()
-//properties.load(project.rootProject.file('local.properties').newDataInputStream())
-//bintray {
-//    user = properties.getProperty("bintray.user")
-//    key = properties.getProperty("bintray.apikey")
-//    configurations = ['archives']
-//    pkg {
-//        repo = "maven"
-//        name = "ZSwitcher"
-//        websiteUrl = siteUrl
-//        vcsUrl = gitUrl
-//        licenses = ["Apache-2.0"]
-//        publish = true
-//    }
-//}
