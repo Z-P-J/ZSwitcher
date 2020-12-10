@@ -22,7 +22,8 @@ class Utils {
     }
 
     static boolean isLollipopAndAbove() {
-        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP;
+        return false;
+//        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP;
     }
 
     static float lerp(float a, float b, float t) {

@@ -91,7 +91,7 @@ public class CommonSwitcher extends BaseSwitcher {
                     iconRect.centerX() + clipOffset,
                     iconRect.centerY() + clipOffset
             );
-            if (!Utils.isLollipopAndAbove()) generateShadow();
+//            if (!Utils.isLollipopAndAbove()) generateShadow();
             postInvalidateOnAnimation();
         }
     }
@@ -139,7 +139,7 @@ public class CommonSwitcher extends BaseSwitcher {
         switcherRect.top = onClickOffset + shadowOffset / 2;
         switcherRect.right = (float) getWidth() - onClickOffset - shadowOffset;
         switcherRect.bottom = (float) getHeight() - onClickOffset - shadowOffset - shadowOffset / 2;
-        if (!Utils.isLollipopAndAbove()) generateShadow();
+//        if (!Utils.isLollipopAndAbove()) generateShadow();
         invalidate();
     }
 }

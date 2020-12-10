@@ -2,10 +2,14 @@ package com.zpj.widget.switcher;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Outline;
 import android.graphics.Paint;
+import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
 import android.util.AttributeSet;
+import android.view.View;
 
 public class CircleSwitcher extends BaseSwitcher {
 
@@ -43,6 +47,7 @@ public class CircleSwitcher extends BaseSwitcher {
                     iconRect.centerX() + clipOffset,
                     iconRect.centerY() + clipOffset
             );
+//            if (!Utils.isLollipopAndAbove()) generateShadow();
             postInvalidateOnAnimation();
         }
     }
@@ -81,6 +86,7 @@ public class CircleSwitcher extends BaseSwitcher {
 
     @Override
     protected SwitchOutline getSwitchOutline(int w, int h) {
+        switcherRadius = (Math.min(w, h) / 2f) - shadowOffset;
         int d = (int) (switcherRadius * 2);
         return super.getSwitchOutline(d, d);
     }

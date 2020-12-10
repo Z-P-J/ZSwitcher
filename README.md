@@ -19,7 +19,7 @@ Just add Switcher view in your layout XML and Switcher library in your project v
 
 ```gradle
 dependencies {
-  implementation 'com.zpj.widget:ZSwitcher:1.0.4'
+  implementation 'com.zpj.widget:ZSwitcher:1.0.5'
 }
 ```
 

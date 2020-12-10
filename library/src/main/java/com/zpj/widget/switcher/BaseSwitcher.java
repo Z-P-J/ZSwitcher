@@ -127,7 +127,15 @@ public abstract class BaseSwitcher extends View {
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.BaseSwitcher,
                 defStyleAttr, R.style.Switcher);
 
-        switchElevation = typedArray.getDimension(R.styleable.BaseSwitcher_switcher_elevation, 0f);
+        switchElevation = typedArray.getDimension(R.styleable.BaseSwitcher_switcher_elevation, 12f);
+        int switchShadowAlpha = typedArray.getInt(R.styleable.BaseSwitcher_switcher_shadow_alpha, 64);
+        if (switchShadowAlpha < 0) {
+            switchShadowAlpha = 0;
+        }
+        if (switchShadowAlpha > 255) {
+            switchShadowAlpha = 255;
+        }
+//        int switchShadowColor = typedArray.getColor(R.styleable.BaseSwitcher_switcher_shadow_color, Color.BLACK);
 
         onColor = typedArray.getColor(R.styleable.BaseSwitcher_switcher_on_color, 0);
         offColor = typedArray.getColor(R.styleable.BaseSwitcher_switcher_off_color, 0);
@@ -148,7 +156,7 @@ public abstract class BaseSwitcher extends View {
 
         if (!Utils.isLollipopAndAbove() && switchElevation > 0f) {
             shadowPaint.setColorFilter(new PorterDuffColorFilter(Color.BLACK, PorterDuff.Mode.SRC_IN));
-            shadowPaint.setAlpha(51);
+            shadowPaint.setAlpha(switchShadowAlpha);
             setShadowBlurRadius(switchElevation);
             setLayerType(LAYER_TYPE_SOFTWARE, null);
         }
@@ -295,15 +303,17 @@ public abstract class BaseSwitcher extends View {
         switchElevation = Math.min(25f * (elevation / maxElevation), 25f);
     }
 
+
     @Override
     protected final void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
-        if (Utils.isLollipopAndAbove()) {
-            setOutlineProvider(getSwitchOutline(w, h));
-            setElevation(switchElevation);
-        } else {
-            shadowOffset = switchElevation;
-        }
+//        if (Utils.isLollipopAndAbove()) {
+//            setOutlineProvider(getSwitchOutline(w, h));
+//            setElevation(switchElevation);
+//        } else {
+//            shadowOffset = switchElevation;
+//        }
+        shadowOffset = switchElevation;
 
         onSizeChanged(w, h);
 
