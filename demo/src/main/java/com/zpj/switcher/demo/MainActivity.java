@@ -14,7 +14,6 @@ import com.zpj.widget.switcher.CircleSwitcher;
 import com.zpj.widget.switcher.CommonSwitcher;
 import com.zpj.widget.switcher.OnCheckedChangeListener;
 
-
 public class MainActivity extends AppCompatActivity {
 
     @Override

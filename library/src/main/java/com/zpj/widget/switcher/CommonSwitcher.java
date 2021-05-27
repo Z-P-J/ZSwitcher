@@ -14,7 +14,7 @@ import java.util.Set;
 
 public class CommonSwitcher extends BaseSwitcher {
 
-    private RectF switcherRect = new RectF(0f, 0f, 0f, 0f);
+    private final RectF switcherRect = new RectF(0f, 0f, 0f, 0f);
 
     public CommonSwitcher(Context context) {
         super(context);

@@ -1,5 +1,4 @@
 apply plugin: 'com.android.library'
-apply plugin: 'com.novoda.bintray-release'
 
 android {
     compileSdkVersion 28
@@ -8,17 +7,7 @@ android {
         minSdkVersion 19
         targetSdkVersion 28
         versionCode 1
-        versionName "1.0.4"
-    }
-
-    publish {
-        artifactId = 'ZSwitcher'
-        userOrg = 'z-p-j'
-        groupId = 'com.zpj.widget'
-        publishVersion = '1.0.5'
-        desc = 'Android implementation of switch animation from Oleg Frolov.'
-        website = 'https://github.com/Z-P-J/ZSwitcher'
-        licences = ['Apache-2.0']
+        versionName "1.0.0"
     }
 }
 

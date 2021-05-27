@@ -1,7 +1,6 @@
 package com.zpj.widget.switcher;
 
 import android.content.Context;
-import android.os.Build;
 
 class Utils {
 
